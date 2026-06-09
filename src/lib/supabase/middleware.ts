@@ -11,7 +11,7 @@ import { NextResponse, type NextRequest } from "next/server";
 export async function updateSession(request: NextRequest) {
   const url  = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !anon) return NextResponse.next({ request });
+  if (!url || !anon || (!url.startsWith("http://") && !url.startsWith("https://"))) return NextResponse.next({ request });
 
   let response = NextResponse.next({ request });
 
